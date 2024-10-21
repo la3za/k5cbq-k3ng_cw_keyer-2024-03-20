@@ -1,0 +1,64 @@
+10.04.2024
+
+I'm using the CW Training Functionality of the K3NG keyer to increase accuracy and speed. Sometimes, if I train at a speed a little above my comfort level, I experienced that I was never able to transmit the sequence correctly. And the keyer just kept on hitting me with the same sequence over and over again. Finally, I had to break out of the training mode and restart it again.
+
+Therefore I wanted these modes to give up and move on in a soft way. A new variable PRACTICE_MAX_ATTEMPTS (in keyer_settings.h) will take care of that. A value of 4 means that the keyer moves on to the next word after 4 failed attempts. This is the value I use. Other values are: 1 to let it it move on at the first failure, and a large value, say 100, will give the old behavior where it just keeps hitting you with the same word over and over again.
+
+This takes a few changed code lines in k3ng_keyer.ino. The reference is code version "2024.03.20.2239":
+
+Command Mode U Receive / Send Echo Practice:
+- lines 8519-20: change "loop2 = 1;" to
+    		loop2 = PRACTICE_MAX_ATTEMPTS;     // Command Mode rx/tx practice (U); was 1 LA3ZA; 
+
+- line 8616: 	after send_char(' ',0);
+		add loop2 = PRACTICE_MAX_ATTEMPTS; // new code line, reset counter for number of errors; LA3ZA 
+
+- line 8642: 	after if (correct_answer_led) digitalWrite(correct_answer_led, LOW); 
+		add loop2 = loop2-1;               // new code line, count down number of attempts; LA3ZA
+
+
+Command Line Interface, Receive / Transmit Echo Practice, Progressive 5 Character Groups:
+
+- line 15008-10: replace loop2 = 1;
+    		 loop2 = PRACTICE_MAX_ATTEMPTS; // CLI - RX/Tx Practice, Progressive; was 1, LA3ZA
+
+- line 15134: 	after send_char(' ',0);
+		add loop2 = PRACTICE_MAX_ATTEMPTS;   // new code line, reset counter for no of errors; LA3ZA
+
+- line 15152:   after if (correct_answer_led) digitalWrite(correct_answer_led, LOW);  
+		add loop2 = loop2-1;                 // new code line, count down number of attempts; LA3ZA
+
+Command Line Interface, Keyboard Interactive Receive Practice
+
+- line 15810	replace loop2=1; with
+		loop2 = PRACTICE_MAX_ATTEMPTS; // CLI, keyboard practice I, was 1, LA3ZA
+
+- line 15868	after
+			service_display();
+            	#endif
+		loop2 = loop2-1;              // new code line, count down number of attempts; LA3ZA
+		
+
+What is left to do is something I haven't succeeded in doing and that is to implement the same functionality for "Command Line Interface, Receive / Transmit Echo Practice" and callsigns, 2,3,4 letter words, QSO words etc. It starts in line 15989 where loop2=1; needs to be replaced with loop2 = PRACTICE_MAX_ATTEMPTS; So far I haven't been able to find where to put "loop2 = loop2-1;" in the following while (loop2) loop.
+
+
+
+
+13.04.2024
+
+I found what was needed for the countdown and soft exit for the practice mode with callsigns etc also:
+
+
+port_to_use->println();
+
+          #ifdef FEATURE_DISPLAY
+
+            display_scroll_print_char(' ');
+
+            service_display();
+
+          #endif
+
+          loop2 = loop2-1;              // new code line, count down number of attempts; LA3ZA
+
+The additional last line is line 15101 in my (modified) code 

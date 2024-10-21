@@ -3877,7 +3877,8 @@ void display_scroll_print_char(char charin){
 
   #ifdef OPTION_DISPLAY_NON_ENGLISH_EXTENSIONS
   switch (byte(charin)){
-    case 220: charin = 0;break; // U_umlaut  (D, ...)
+                                // ?? "When referencing custom character “0”, if it is not in a variable, you need to cast it as a byte" ???
+    case 220: charin = 5;break; // U_umlaut  (D, ...)           //LA3ZA changed from 0 to 5. 
     case 214: charin = 1;break; // O_umlaut  (D, SM, OH, ...)
     case 196: charin = 2;break; // A_umlaut  (D, SM, OH, ...)
     case 198: charin = 3;break; // AE_capital (OZ, LA)
@@ -8516,7 +8517,8 @@ void command_progressive_5_char_echo_practice() {
     //     break;
     // } //switch (practice_mode)
 
-    loop2 = 1;
+    loop2 = PRACTICE_MAX_ATTEMPTS;    // Command Mode rx/tx practice (U), was 1 LA3ZA; 
+    // PRACTICE_MAX_ATTEMPTS = typically 4 (or 100 to get old behavior), new variable in keyer_settings.h)   
     while (loop2) {
       user_send_loop = 1;
       user_sent_cw = "";
@@ -8612,6 +8614,7 @@ void command_progressive_5_char_echo_practice() {
               #endif                                                                      // FEATURE_DISPLAY
               send_char(' ',0);
               send_char(' ',0);
+              loop2 = PRACTICE_MAX_ATTEMPTS;                                             // reset counter for number of errors, new code line, LA3ZA 2025.04.08
               progressive_step_counter++;
             }                                                                             // end if (progressive_step_counter < 6)
             if (progressive_step_counter == 6) {                                          // we get here if the five character string is correct
@@ -8637,6 +8640,7 @@ void command_progressive_5_char_echo_practice() {
           } else {                                                                        // we get here if the character entered is wrong
             if (wrong_answer_led) digitalWrite(wrong_answer_led, HIGH);                   // set the wrong answer LED high
             if (correct_answer_led) digitalWrite(correct_answer_led, LOW);                // clear the correct answer LED
+            loop2 = loop2-1;                                                              // new code line, count down number of attempts; LA3ZA
             boop();
             send_char(' ',0);
             send_char(' ',0);
@@ -14020,7 +14024,7 @@ void service_paddle_echo()
               if(strlen(prosign_temp) == 3) display_scroll_print_char(prosign_temp[2]);
             } else {
               switch (ascii_temp){
-                case 220: ascii_temp = 0;break; // U_umlaut  (D, ...)
+                case 220: ascii_temp = 5;break; // U_umlaut  (D, ...)         //LA3ZA changed from 0 to 5
                 case 214: ascii_temp = 1;break; // O_umlaut  (D, SM, OH, ...)
                 case 196: ascii_temp = 2;break; // A_umlaut  (D, SM, OH, ...)
                 case 198: ascii_temp = 3;break; // AE_capital (OZ, LA)
@@ -14039,7 +14043,7 @@ void service_paddle_echo()
           #else //OPTION_DISPLAY_NON_ENGLISH_EXTENSIONS
             ascii_temp = byte(convert_cw_number_to_ascii(paddle_echo_buffer));
             switch (ascii_temp){
-              case 220: ascii_temp = 0;break; // U_umlaut  (D, ...)
+              case 220: ascii_temp = 5;break; // U_umlaut  (D, ...)         //LA3ZA changed from 0 to 5
               case 214: ascii_temp = 1;break; // O_umlaut  (D, SM, OH, ...)
               case 196: ascii_temp = 2;break; // A_umlaut  (D, SM, OH, ...)
               case 198: ascii_temp = 3;break; // AE_capital (OZ, LA)
@@ -15005,7 +15009,7 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
 
     } // switch (practice_mode)
 
-    loop2 = 1;
+    loop2 = PRACTICE_MAX_ATTEMPTS; // CLI - RX/Tx Practice, Progressive; was 1, LA3ZA
 
     while (loop2){
       user_send_loop = 1;
@@ -15095,7 +15099,7 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
             display_scroll_print_char(' ');
             service_display();
           #endif
-
+          loop2 = loop2-1;              // new code line, count down number of attempts; LA3ZA
         }
 
         // does the user want to exit?
@@ -15128,6 +15132,8 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
             beep();
             send_char(' ',0);
             send_char(' ',0);
+            loop2 = PRACTICE_MAX_ATTEMPTS;                                             // new code line, reset counter for no of errors; LA3ZA
+
             progressive_step_counter++;
             if (progressive_step_counter == 6) {                                        // all five characters are correct
               loop2 = 0;
@@ -15145,6 +15151,7 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
           } else {                                                                      // characters are wrong
             if (wrong_answer_led)   digitalWrite(wrong_answer_led,  HIGH);              // set the wrong answer LED high
             if (correct_answer_led) digitalWrite(correct_answer_led, LOW);              // clear the correct answer LED
+            loop2 = loop2-1;                                                            // new code line, count down number of attempts; LA3ZA
             boop();
             send_char(' ', 0);
             send_char(' ', 0);
@@ -15801,7 +15808,7 @@ void serial_practice_interactive(PRIMARY_SERIAL_CLS * port_to_use,byte practice_
         break;
     } //switch(practice_type)
 
-    loop2 = 1;
+    loop2 = PRACTICE_MAX_ATTEMPTS; // CLI, keyboard practice I, was 1; LA3ZA
 
     while (loop2){
 
@@ -15859,6 +15866,7 @@ void serial_practice_interactive(PRIMARY_SERIAL_CLS * port_to_use,byte practice_
               lcd_center_print_timed("Wrong!", 0, default_display_msg_delay);
               service_display();
             #endif
+            loop2 = loop2-1;           // new code line, count down number of attempts; LA3ZA
           }
         }
       }
@@ -15979,7 +15987,7 @@ void serial_practice_non_interactive(PRIMARY_SERIAL_CLS * port_to_use,byte pract
     cw_to_send_to_user = cw_to_send_to_user + "    ";
 
 
-    loop2 = 1;
+    loop2 = 1; 
     x = 0;
 
     while ((loop2) && (x < (cw_to_send_to_user.length()))) {
@@ -15989,14 +15997,14 @@ void serial_practice_non_interactive(PRIMARY_SERIAL_CLS * port_to_use,byte pract
         display_scroll_print_char(cw_to_send_to_user[x]);
         service_display();
       #endif
-      x++;
+      x++;     
 
       if (port_to_use->available()){
         port_to_use->read();
         loop1 = 0;
         loop2 = 0;
         x = 99;
-      }
+      } 
 
       #ifdef FEATURE_BUTTONS
         while ((paddle_pin_read(paddle_left) == LOW) || (paddle_pin_read(paddle_right) == LOW) || (analogbuttonread(0))) {
@@ -18767,15 +18775,15 @@ void initialize_display(){
       byte AA_capital[8] = {B00100,B00000,B01110,B10001,B11111,B10001,B10001,B00000}; // 'Å'
       byte Ntilde[8] =     {B01101,B10010,B00000,B11001,B10101,B10011,B10001,B00000}; // 'Ñ'
 
-
-
-      //     upload 8 charaters to the lcd
-      lcd.createChar(0, U_umlaut); //     German
+ 
+ 
+      //     upload 8 characters to the lcd
+      lcd.createChar(5, U_umlaut); //     German --- LA3ZA - this one doesn't load in position 0, changed to 5
       lcd.createChar(1, O_umlaut); //     German, Swedish
       lcd.createChar(2, A_umlaut); //     German, Swedish
       lcd.createChar(3, AE_capital); //   Danish, Norwegian
       lcd.createChar(4, OE_capital); //   Danish, Norwegian
-      lcd.createChar(5, empty); //        For some reason this one needs to display nothing - otherwise it will display in pauses on serial interface
+      //lcd.createChar(5, empty); //        For some reason this one needs to display nothing - otherwise it will display in pauses on serial interface
       lcd.createChar(6, AA_capital); //   Danish, Norwegian, Swedish
       lcd.createChar(7, Ntilde); //       Spanish
       lcd.clear(); // you have to ;o)

@@ -1,4 +1,8 @@
 // Initial and hardcoded settings
+
+#define PRACTICE_MAX_ATTEMPTS 4 // LA3ZA: In echo training mode give up and present new word after so many erroneous attempts. OK for paddle training
+
+
 #define initial_speed_wpm 26             // "factory default" keyer speed setting
 #define initial_command_mode_speed_wpm 20 // "factory default" command mode speed setting 
 #define initial_sidetone_freq 700        // "factory default" sidetone frequency setting
@@ -39,8 +43,8 @@
 #define winkey_xoff_threshold 20         // the number of chars in the buffer when we begin sending XOFFs
 #define winkey_xon_threshold 10          // the number of chars in the buffer below which we deactivate XOFF
 #define default_memory_repeat_time 3000  // time in milliseconds
-#define LCD_COLUMNS 16          //edit for 1602 or 1604 LCD
-#define LCD_ROWS 2           //edit for 1602 or 1604 LCD
+#define LCD_COLUMNS 20          //edit for 1602 or 1604 LCD
+#define LCD_ROWS 4           //edit for 1602 or 1604 LCD
 #define lcd_i2c_address_mathertel_PCF8574 0x27             // I2C address of display for FEATURE_LCD_MATHERTEL_PCF8574
 #define lcd_i2c_address_fdebrander_lcd 0x27                // I2C address of display for FEATURE_LCD_I2C_FDEBRABANDER
 #define lcd_i2c_address_ydv1_lcd 0x27                      // I2C address of display for FEATURE_LCD_YDv1
@@ -289,7 +293,7 @@
 #define sidetone_volume_low_limit 10
 #define sidetone_volume_high_limit 500
 
-#define custom_startup_field "your custom text here"   // an example could be callsign and name, eg. "AB1XYZ Bob", (or "Worlds best operator" which requires a 20 column display), string length shouldo be no more than the number of columns on the display
+#define custom_startup_field "   LA3ZA Sverre     "   // an example could be callsign and name, eg. "AB1XYZ Bob", (or "Worlds best operator" which requires a 20 column display), string length shouldo be no more than the number of columns on the display
 
 #define command_mode_acknowledgement_character 'E'
 #if defined(FEATURE_COMMAND_MODE_ENHANCED_CMD_ACKNOWLEDGEMENT)

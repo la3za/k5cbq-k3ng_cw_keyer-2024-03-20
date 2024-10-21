@@ -24,7 +24,7 @@
 // #define HARDWARE_MORTTY_PICO_OVER_USB   // edit these files: keyer_pin_settings_mortty_pico_over_usb.h, keyer_settings_mortty_mortty_pico_over_usb.h, keyer_features_and_options_mortty_mortty_pico_over_usb.h
 // #define HARDWARE_MORTTY_SO2R_WITH_POTENTIOMETER  // edit these files: keyer_pin_settings_mortty_so2r_with_potentiometer.h, keyer_settings_mortty_so2r_with_potentiometer.h, keyer_features_and_options_mortty_so2r_with_potentiometer.h
 // #define HARDWARE_YAACWK   // http://i1cra.briata.org/yaacwk/  files: keyer_pin_settings_yaacwk.h, keyer_features_and_options_yaacwk.h, keyer_settings_yaacwk.h
-// #define HARDWARE_K5BCQ   // edit these files: keyer_pin_settings_k5bcq.h, keyer_features_and_options_k5bcq.h, keyer_settings_k5bcq.h 
+#define HARDWARE_K5BCQ   // edit these files: keyer_pin_settings_k5bcq.h, keyer_features_and_options_k5bcq.h, keyer_settings_k5bcq.h 
 // #define HARDWARE_MEGAKEYER // https://github.com/w6ipa/megakeyer
 // #define HARDWARE_OPENCWKEYER_MK2 // https://github.com/ok1cdj/OpenCWKeyerMK2  edit these files: keyer_features_and_options_opencwkeyer_mk2.h keyer_pin_settings_opencwkeyer_mk2.h keyer_settings_opencwkeyer_mk2.h
 // #define HARDWARE_IZ3GME // https://github.com/iz3gme/k3ng_cw_keyer  edit these files: keyer_features_and_options_iz3gme.h keyer_pin_settings_iz3gme.h keyer_settings.h
