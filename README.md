@@ -1,4 +1,4 @@
-This is the K3NG keyer as defined for the K5CBQ hardware, and based on version 2024.03.20.2239
+This is a small modification of the K3NG keyer as defined for the K5CBQ hardware, and based on version 2024.03.20.2239
 
 This keyer has a Command Mode rx/tx practice. 
 Sometimes, if I train at a speed a little above my comfort level, I experienced that I was never able to transmit the sequence correctly. 
