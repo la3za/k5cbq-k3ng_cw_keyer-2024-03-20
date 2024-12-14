@@ -12,7 +12,7 @@ This is the value I use. Other values are: 1 to let it move on at the first fail
 will give the old behavior where it just keeps hitting you with the same word over and over again.
 
 The modification affects:
-* Command Line Interface, Receive / Transmit Echo Practice,
+* Command Line Interface, Receive / Transmit Echo Practice:
   * Progressive 5 Character Groups
   * callsigns
   * 2,3,4 letter words
