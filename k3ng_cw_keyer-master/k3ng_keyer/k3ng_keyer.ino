@@ -8517,7 +8517,7 @@ void command_progressive_5_char_echo_practice() {
     //     break;
     // } //switch (practice_mode)
 
-    loop2 = PRACTICE_MAX_ATTEMPTS;    // Command Mode rx/tx practice (U), was 1 LA3ZA; 
+    loop2 = PRACTICE_MAX_ATTEMPTS;    // Command Mode rx/tx practice (U), was 1 LA3ZA Training
     // PRACTICE_MAX_ATTEMPTS = typically 4 (or 100 to get old behavior), new variable in keyer_settings.h)   
     while (loop2) {
       user_send_loop = 1;
@@ -8614,7 +8614,7 @@ void command_progressive_5_char_echo_practice() {
               #endif                                                                      // FEATURE_DISPLAY
               send_char(' ',0);
               send_char(' ',0);
-              loop2 = PRACTICE_MAX_ATTEMPTS;                                             // reset counter for number of errors, new code line, LA3ZA 2025.04.08
+              loop2 = PRACTICE_MAX_ATTEMPTS;                                             // reset counter for number of errors, new code line, LA3ZA Training 2025.04.08
               progressive_step_counter++;
             }                                                                             // end if (progressive_step_counter < 6)
             if (progressive_step_counter == 6) {                                          // we get here if the five character string is correct
@@ -8640,7 +8640,7 @@ void command_progressive_5_char_echo_practice() {
           } else {                                                                        // we get here if the character entered is wrong
             if (wrong_answer_led) digitalWrite(wrong_answer_led, HIGH);                   // set the wrong answer LED high
             if (correct_answer_led) digitalWrite(correct_answer_led, LOW);                // clear the correct answer LED
-            loop2 = loop2-1;                                                              // new code line, count down number of attempts; LA3ZA
+            loop2 = loop2-1;                                                              // new code line, count down number of attempts; LA3ZA Training
             boop();
             send_char(' ',0);
             send_char(' ',0);
@@ -15009,7 +15009,7 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
 
     } // switch (practice_mode)
 
-    loop2 = PRACTICE_MAX_ATTEMPTS; // CLI - RX/Tx Practice, Progressive; was 1, LA3ZA
+    loop2 = PRACTICE_MAX_ATTEMPTS; // CLI - RX/Tx Practice, Progressive; was 1, LA3ZA Training
 
     while (loop2){
       user_send_loop = 1;
@@ -15099,7 +15099,7 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
             display_scroll_print_char(' ');
             service_display();
           #endif
-          loop2 = loop2-1;              // new code line, count down number of attempts; LA3ZA
+          loop2 = loop2-1;              // new code line, count down number of attempts; LA3ZA Training
         }
 
         // does the user want to exit?
@@ -15132,7 +15132,7 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
             beep();
             send_char(' ',0);
             send_char(' ',0);
-            loop2 = PRACTICE_MAX_ATTEMPTS;                                             // new code line, reset counter for no of errors; LA3ZA
+            loop2 = PRACTICE_MAX_ATTEMPTS;                                             // new code line, reset counter for no of errors; LA3ZA Training
 
             progressive_step_counter++;
             if (progressive_step_counter == 6) {                                        // all five characters are correct
@@ -15151,7 +15151,7 @@ void receive_transmit_echo_practice(PRIMARY_SERIAL_CLS * port_to_use, byte pract
           } else {                                                                      // characters are wrong
             if (wrong_answer_led)   digitalWrite(wrong_answer_led,  HIGH);              // set the wrong answer LED high
             if (correct_answer_led) digitalWrite(correct_answer_led, LOW);              // clear the correct answer LED
-            loop2 = loop2-1;                                                            // new code line, count down number of attempts; LA3ZA
+            loop2 = loop2-1;                                                            // new code line, count down number of attempts; LA3ZA Training
             boop();
             send_char(' ', 0);
             send_char(' ', 0);
@@ -15808,7 +15808,7 @@ void serial_practice_interactive(PRIMARY_SERIAL_CLS * port_to_use,byte practice_
         break;
     } //switch(practice_type)
 
-    loop2 = PRACTICE_MAX_ATTEMPTS; // CLI, keyboard practice I, was 1; LA3ZA
+    loop2 = PRACTICE_MAX_ATTEMPTS; // CLI, keyboard practice I, was 1; LA3ZA Training
 
     while (loop2){
 
@@ -15866,7 +15866,7 @@ void serial_practice_interactive(PRIMARY_SERIAL_CLS * port_to_use,byte practice_
               lcd_center_print_timed("Wrong!", 0, default_display_msg_delay);
               service_display();
             #endif
-            loop2 = loop2-1;           // new code line, count down number of attempts; LA3ZA
+            loop2 = loop2-1;           // new code line, count down number of attempts; LA3ZA Training
           }
         }
       }
@@ -18762,7 +18762,7 @@ void initialize_display(){
       lcd.setBacklight(HIGH);
     #endif
     
-    #ifdef OPTION_DISPLAY_NON_ENGLISH_EXTENSIONS  // OZ1JHM provided code, cleaned up by LA3ZA
+    #ifdef OPTION_DISPLAY_NON_ENGLISH_EXTENSIONS  // OZ1JHM provided code, cleaned up by LA3ZA Training
       // Store bit maps, designed using editor at http://omerk.github.io/lcdchargen/
 
 

@@ -1,6 +1,6 @@
 // Initial and hardcoded settings
 
-#define PRACTICE_MAX_ATTEMPTS 4 // LA3ZA: In echo training mode give up and present new word after so many erroneous attempts. OK for paddle training
+#define PRACTICE_MAX_ATTEMPTS 4 // LA3ZA Training: In echo training mode give up and present new word after so many erroneous attempts. OK for paddle training
 
 
 #define initial_speed_wpm 26             // "factory default" keyer speed setting
