@@ -2,7 +2,7 @@ This is a small modification of the K3NG keyer as defined for the K5CBQ hardware
 
 This keyer has a Command Mode rx/tx practice. 
 Sometimes, if I train at a speed a little above my comfort level, I experienced that I was never able to transmit the sequence correctly. 
-And the keyer just kept on hitting me with the same sequence over and over again. 
+And the keyer just kept hitting me with the same sequence over and over again. 
 In desperation, I had to break out of the training mode and restart it again.
 
 Therefore I wanted these modes to give up and move on in a soft way. 
