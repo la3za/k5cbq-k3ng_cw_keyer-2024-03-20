@@ -19,7 +19,7 @@ The modification affects:
   * QSO words 
 * Command Line Interface, Keyboard Interactive Receive Practice
 
-Search for "LA3ZA Training" in code to find the 11 places affected in the code (10 in k3ng_keyer.ino and 1 in keyer_settings_k5cbq.h)
+Search for "LA3ZA Training" in the Arduino IDE to find the 11 places affected in the code (10 in k3ng_keyer.ino and 1 in keyer_settings_k5cbq.h)
 
 See also [Groups.io discussion in april 2024](https://groups.io/g/radioartisan/topic/105448040)
 
