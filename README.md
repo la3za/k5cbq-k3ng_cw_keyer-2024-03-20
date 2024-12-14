@@ -19,4 +19,5 @@ The modification affects:
   * QSO words 
 * Command Line Interface, Keyboard Interactive Receive Practice
 
+See [Groups.io discussion in april 2024](https://groups.io/g/radioartisan/topic/105448040)
 
