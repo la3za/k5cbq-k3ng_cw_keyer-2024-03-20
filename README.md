@@ -21,5 +21,5 @@ The modification affects:
 
 Search for "LA3ZA Training" in code to find the 11 places affected in the code (10 in k3ng_keyer.ino and 1 in keyer_settings_k5cbq.h)
 
-See [Groups.io discussion in april 2024](https://groups.io/g/radioartisan/topic/105448040)
+See also [Groups.io discussion in april 2024](https://groups.io/g/radioartisan/topic/105448040)
 
