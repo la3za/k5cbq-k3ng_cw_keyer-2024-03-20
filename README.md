@@ -6,7 +6,7 @@ And the keyer just kept on hitting me with the same sequence over and over again
 In desperation, I had to break out of the training mode and restart it again.
 
 Therefore I wanted these modes to give up and move on in a soft way. 
-A new variable PRACTICE_MAX_ATTEMPTS (in keyer_settings_k5cbq.h) will take care of that. 
+A new variable PRACTICE_MAX_ATTEMPTS  will take care of that. 
 A value of 4 means that the keyer moves on to the next word after 4 failed attempts. 
 This is the value I use. Other values are: 1 to let it move on at the first failure, and a large value, say 100, 
 will give the old behavior where it just keeps hitting you with the same word over and over again.
@@ -18,6 +18,8 @@ The modification affects:
   * 2,3,4 letter words
   * QSO words 
 * Command Line Interface, Keyboard Interactive Receive Practice
+
+Search for "LA3ZA Training" in code to find the 11 places affected in the code (10 in k3ng_keyer.ino and 1 in keyer_settings_k5cbq.h)
 
 See [Groups.io discussion in april 2024](https://groups.io/g/radioartisan/topic/105448040)
 
